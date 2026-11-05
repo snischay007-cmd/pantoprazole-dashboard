@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pantoprazole Evidence Dashboard</title>
+<style>
+:root{--bg:#fff;--card:#f5f9fb;--ink:#12233d;--mute:#5a6b82;--navy:#0b2a55;--teal:#0f9aa0;--line:#dbe5ee;--warn:#b4531a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0c1626;--card:#13233b;--ink:#e6eef8;--mute:#9db0c8;--navy:#8fb5f0;--teal:#3cc7cc;--line:#25395a;--warn:#f0a26b;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0c1626;--card:#13233b;--ink:#e6eef8;--mute:#9db0c8;--navy:#8fb5f0;--teal:#3cc7cc;--line:#25395a;--warn:#f0a26b;color-scheme:dark}
+html{scroll-padding-top:70px;scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);display:flex;gap:6px;overflow-x:auto;padding:10px 16px;align-items:center}
+nav b{color:var(--navy);margin-right:8px;white-space:nowrap}
+nav a{color:var(--mute);text-decoration:none;padding:6px 12px;border-radius:99px;font-size:14px;white-space:nowrap}
+nav a:hover{background:var(--card);color:var(--teal)}
+header{background:linear-gradient(135deg,#0b2a55,#0f7f86);color:#fff;padding:48px 20px}
+header>div,main{max-width:1080px;margin:auto}
+header h1{margin:0 0 8px;font-size:clamp(26px,5vw,42px)}
+header p{margin:0;max-width:720px;opacity:.92}
+main{padding:0 20px 60px}
+section{padding-top:44px}
+h2{color:var(--navy);margin:0 0 6px;font-size:26px;border-left:5px solid var(--teal);padding-left:12px}
+.sub{color:var(--mute);margin:0 0 18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+.stat{font-size:34px;font-weight:700;color:var(--teal);line-height:1.1}
+.lbl{font-size:14px;color:var(--mute)}
+.tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:2px 8px;border-radius:99px;margin-top:8px;color:#fff}
+.t-rct{background:#0b2a55}.t-obs{background:#0f9aa0}.t-ma{background:#5b4bb7}.t-pv{background:#8a8f98}.t-lbl{background:#2e7d4f}
+.t-rct,.t-ma{color:#fff}
+.bar{display:grid;grid-template-columns:150px 1fr 56px;gap:10px;align-items:center;margin:9px 0;font-size:14px}
+.bar i{display:block;height:20px;border-radius:6px;background:var(--teal);width:0;transition:width .9s}
+.bar i.n{background:var(--navy)}.bar i.w{background:var(--warn)}
+.trk{background:var(--line);border-radius:6px}
+.pie{width:170px;height:170px;border-radius:50%;margin:6px auto 12px}
+.leg{font-size:14px;display:flex;flex-wrap:wrap;gap:6px 14px;justify-content:center}
+.leg span:before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;background:var(--c);margin-right:6px}
+.note{border-left:4px solid var(--warn);background:var(--card);padding:12px 14px;border-radius:8px;font-size:14px;margin:14px 0}
+.na{color:var(--mute);font-style:italic}
+input[type=search]{width:100%;max-width:380px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font-size:15px;margin-bottom:10px}
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.btns button{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:7px 14px;border-radius:99px;cursor:pointer;font-size:14px}
+.btns button.on{background:var(--teal);color:#fff;border-color:var(--teal)}
+.sc{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:640px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--navy);background:var(--card);position:sticky;top:0}
+ol.refs{padding-left:20px;font-size:14px}ol.refs li{margin-bottom:8px}
+a{color:var(--teal)}
+pre{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;overflow:auto;max-height:320px;font-size:12px}
+footer{border-top:1px solid var(--line);padding:20px;color:var(--mute);font-size:13px;text-align:center}
+@media(max-width:560px){.bar{grid-template-columns:100px 1fr 48px}}
+</style></head><body>
+<nav><b>℞ Pantoprazole Evidence</b><a href="#summary">Summary</a><a href="#profile">Drug profile</a><a href="#adr">ADR &amp; safety</a><a href="#india">Indian RWE</a><a href="#compare">PPI comparison</a><a href="#data">Datasets</a><a href="#method">Methods &amp; references</a></nav>
+<header><div><h1>Pantoprazole: evidence dashboard</h1>
+<p>Clinical uses, adverse reactions, Indian real-world utilisation and comparative PPI analytics. Every figure below was read from a cited source; anything not retrieved is labelled as unavailable.</p></div></header>
+<main>
+
+<section id="summary"><h2>Executive summary</h2><p class="sub">Key findings, each tagged by evidence type.</p>
+<div class="grid">
+<div class="card"><div class="stat">12.2%</div><div class="lbl">Headache with oral pantoprazole in US GERD trials (n=1,473); placebo 8.5% [R1]</div><span class="tag t-rct">Clinical-trial incidence</span></div>
+<div class="card"><div class="stat">58–76%</div><div class="lbl">Share of PPI prescriptions that were pantoprazole across three single-centre Indian audits [R8–R10]</div><span class="tag t-obs">Observational, local</span></div>
+<div class="card"><div class="stat">46–57%</div><div class="lbl">Range of PPI use judged inappropriate, outside approved or without clear indication, in those audits (definitions differ) [R8–R10]</div><span class="tag t-obs">Observational, local</span></div>
+<div class="card"><div class="stat">≈ equal</div><div class="lbl">Pantoprazole 40 mg healing was not significantly different from omeprazole 20 mg in pooled RCT analyses [R4, R5]</div><span class="tag t-ma">Meta-analysis</span></div>
+</div>
+<div class="note"><b>Read with care.</b> The Indian figures come from individual hospitals with 192–253 patients. They are not national estimates and should not be generalised.</div></section>
+
+<section id="profile"><h2>Pantoprazole drug profile</h2><p class="sub">Approved uses and key label warnings (US FDA Protonix label) [R1, R2].</p>
+<div class="grid">
+<div class="card"><b>Approved indications (oral)</b><ul><li>Short-term treatment of erosive esophagitis associated with GERD</li><li>Maintenance of healing of erosive esophagitis</li><li>Pathological hypersecretory conditions including Zollinger-Ellison syndrome (adult dose 40 mg twice daily in the label)</li></ul><span class="tag t-lbl">Regulatory label</span></div>
+<div class="card"><b>Warnings and precautions listed</b><ul><li>Gastric malignancy to be excluded</li><li>Acute tubulointerstitial nephritis</li><li><i>C. difficile</i>-associated diarrhoea</li><li>Bone fracture (hip, wrist, spine)</li><li>Severe cutaneous adverse reactions</li><li>Fundic gland polyps, risk rising beyond 1 year</li><li>Interference with neuroendocrine tumour work-up and urine THC screens; methotrexate</li></ul><span class="tag t-lbl">Regulatory label</span></div>
+<div class="card"><b>Labelled interactions (section headings)</b><ul><li>Antiretroviral therapy</li><li>Coumarin anticoagulants</li><li>Clopidogrel</li><li>Methotrexate</li><li>False-positive urine THC</li></ul><b>IV formulation</b><ul><li>Anaphylaxis, thrombophlebitis; consider zinc supplementation if prone to deficiency [R2, 2012 label]</li></ul><span class="tag t-lbl">Regulatory label</span></div>
+</div>
+<div class="note"><b>Off-label uses:</b> <span class="na">not collected in this build.</span> The Indian audits below measured how often use fell outside approved indications, but no trial evidence for specific off-label uses was extracted. CDSCO and Indian Pharmacopoeia labelling were also not retrieved.</div></section>
+
+<section id="adr"><h2>Adverse reactions and pharmacovigilance</h2><p class="sub">Trial incidence is shown separately from observational and spontaneous-report data.</p>
+<div class="grid"><div class="card"><b>Clinical-trial incidence, adults with GERD (>2% events)</b><p class="lbl">Nine US comparative trials: pantoprazole n=1,473; comparators n=345; placebo n=82 [R1]</p><div id="adrbars"></div>
+<div class="leg"><span style="--c:#0f9aa0">Pantoprazole</span><span style="--c:#0b2a55">Comparators</span><span style="--c:#b4531a">Placebo</span></div>
+<p class="lbl">Nausea 7.0% on pantoprazole; the comparator and placebo values were not cleanly readable from the retrieved text. Label highlights also list abdominal pain, vomiting, flatulence, dizziness and arthralgia as &gt;2% events [R2]. <span class="tag t-rct">Clinical-trial incidence</span></p></div>
+<div class="card"><b>Observational inpatient data</b><div class="stat">9%</div><div class="lbl">ADRs and 14% drug interactions among 253 inpatients receiving PPIs, one rural tertiary hospital [R9]. Not specific to pantoprazole alone.</div><span class="tag t-obs">Observational, local</span></div>
+<div class="card"><b>Spontaneous reports (PvPI, VigiBase, FAERS)</b><p class="na">Frequency and severity data not retrieved in this build. Spontaneous reports cannot give incidence, so none are shown rather than estimated.</p><span class="tag t-pv">Pharmacovigilance: unavailable</span></div></div></section>
+
+<section id="india"><h2>Indian real-world evidence</h2><p class="sub">Epidemiology and hospital prescribing audits. Use the filter to switch the chart.</p>
+<div class="grid">
+<div class="card"><div class="stat">15.6%</div><div class="lbl">Pooled GERD prevalence in India (95% CI 11.0–20.7), 9 studies, 20,614 subjects; individual studies 5–28.5% and highly heterogeneous. The abstract’s model estimate reads 14.15% (9.9–19.7), so treat the pooled value as approximate [R7]</div><span class="tag t-ma">Meta-analysis</span></div>
+<div class="card"><div class="stat">22.2%</div><div class="lbl">Symptomatic GERD (GerdQ), community sample of 1,072 in southern India, higher in urban residents [R6]. A later southern-India community study reported 8.2% with a different definition, showing how method changes the estimate.</div><span class="tag t-obs">Observational, regional</span></div>
+<div class="card"><div class="stat">7.6–30%</div><div class="lbl">Range of GERD prevalence in Indian literature per a Delphi consensus [R11]</div><span class="tag t-obs">Consensus review</span></div></div>
+<h3 style="margin-top:28px;color:var(--navy)">Hospital prescribing audits</h3>
+<div class="btns" id="fbtn"></div>
+<div class="grid"><div class="card"><div id="rwbars"></div><p class="lbl" id="rwnote"></p></div>
+<div class="card"><b>PPI mix, Davangere inpatients (n=216 on PPIs, 2015) [R10]</b><div class="pie" id="pie"></div><div class="leg" id="pieleg"></div></div></div>
+<div class="note">Each study used a different appropriateness standard: NICE (R8), US FDA indications (R9), National Formulary of India 2011 (R10). Percentages are not directly comparable. In R8, 72% of PPI users received the IV route, and 54% of use was appropriate. A Bengaluru general-medicine abstract (pantoprazole 82.5% of 908 PPI prescriptions) was excluded because the retrieved page marked its abstract as withdrawn.</div></section>
+
+<section id="compare"><h2>Comparative PPI analytics</h2><p class="sub">Pantoprazole against omeprazole, esomeprazole, rabeprazole and lansoprazole. Search or filter the table.</p>
+<input type="search" id="q" placeholder="Search drug, dose or finding…">
+<div class="sc"><table id="tbl"><thead><tr><th>Drug</th><th>Standard dose for EE healing [R12]</th><th>Efficacy evidence (erosive esophagitis healing)</th><th>Cost in India</th></tr></thead><tbody></tbody></table></div>
+<div class="grid" style="margin-top:16px">
+<div class="card"><b>Esomeprazole 40 mg vs omeprazole 20 mg: odds ratio for healing [R3]</b><div id="orbars"></div><p class="lbl">Network meta-analysis of 25 RCTs. Odds ratio above 1 favours esomeprazole. <span class="tag t-ma">Meta-analysis</span></p></div>
+<div class="card"><b>Healing-rate ratio vs omeprazole 20 mg, 8 weeks [R4]</b><div id="rrbars"></div><p class="lbl">Pooled RCTs, 2001. Ratio of 1.0 means equal healing. Pantoprazole’s confidence interval was cut off in the retrieved text. <span class="tag t-ma">Meta-analysis</span></p></div></div>
+<div class="note"><b>Interpretation.</b> Only esomeprazole 40 mg showed a consistent healing advantage over omeprazole 20 mg [R3, R5]. The 2009 comparison found no other PPI significantly better than omeprazole 20 mg, and rabeprazole data were insufficient. Differences in symptom relief, cross-PPI interaction profiles, and branded/generic cost comparisons are <span class="na">unavailable here</span>. The cost study in R9 reported savings from generic substitution but its price table was not extracted.</div></section>
+
+<section id="data"><h2>Structured dataset</h2><p class="sub">The JSON below drives every chart on this page. Select all and copy to save it.</p><pre id="json"></pre></section>
+
+<section id="method"><h2>Methods, limitations and references</h2>
+<p>Sources were found by web search and read as abstracts or label excerpts. Values were transcribed as printed. Percentages marked “derived” were computed from a printed value. Full texts behind paywalls were not read. <b>Not covered:</b> CDSCO, PvPI, WHO and IPC documents, ClinicalTrials.gov, EMA, dosing details for non-pantoprazole drugs, off-label evidence, and cost data. This page is for research reading and is not clinical advice.</p>
+<ol class="refs">
+<li id="R1">[R1] FDA. Protonix (pantoprazole) label, NDA 020987/022020, 2023, plus the adverse-reactions table at <a href="https://www.pfizermedical.com/protonix/adverse-reactions">Pfizer Medical</a>. <a href="https://www.accessdata.fda.gov/drugsatfda_docs/label/2023/020987s060%2C022020s023lbl.pdf">FDA PDF</a></li>
+<li>[R2] DailyMed. Protonix I.V. label (updated April 2026; rev. 8/2024). <a href="https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=50802e19-72d3-4130-8d14-eb94361b38e7">Link</a>. IV anaphylaxis, thrombophlebitis and zinc: <a href="https://www.accessdata.fda.gov/drugsatfda_docs/label/2012/020988s044lbl.pdf">FDA label 2012</a></li>
+<li>[R3] Li MJ et al. Network meta-analysis of FDA-licensed PPIs in erosive esophagitis. <i>Medicine</i> 2017. PMID 28953640. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5626283">PMC5626283</a></li>
+<li>[R4] Healing and relapse rates in GERD with newer PPIs vs omeprazole, ranitidine, placebo. <i>Clin Ther</i> 2001. PMID 11519776 (as listed by QxMD). <a href="https://read.qxmd.com/read/11519776/healing-and-relapse-rates-in-gastroesophageal-reflux-disease-treated-with-the-newer-proton-pump-inhibitors-lansoprazole-rabeprazole-and-pantoprazole-compared-with-omeprazole-ranitidine-and-placebo-evidence-from-randomized-clinical-trials">Link</a></li>
+<li>[R5] Standard- and double-dose PPIs for severe erosive oesophagitis: mixed treatment comparison. <i>Aliment Pharmacol Ther</i> 2009. PMID 19558609. <a href="https://read.qxmd.com/read/19558609/systematic-review-standard-and-double-dose-proton-pump-inhibitors-for-the-healing-of-severe-erosive-oesophagitis-a-mixed-treatment-comparison-of-randomized-controlled-trials">Link</a></li>
+<li>[R6] Wang HY et al. GERD prevalence in southern India. <i>BMC Gastroenterol</i> 2016. DOI 10.1186/s12876-016-0452-1. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4791779/">PMC4791779</a>. Later study: Chowdhury SD et al., <i>Indian J Gastroenterol</i> 2019;38:77–82 (8.2%).</li>
+<li>[R7] Meta-analysis and meta-regression of GERD prevalence in India. <i>Indian J Gastroenterol</i> 2020. DOI 10.1007/s12664-020-01104-0; PMID 33409947. <a href="https://pubmed.ncbi.nlm.nih.gov/33409947/">PubMed</a></li>
+<li>[R8] Juneja S et al. Appropriateness of PPI use in hospitalized patients, North India. <i>J Pharm Care</i> 2023;11(2):61–65. <a href="https://jpc.tums.ac.ir/index.php/jpc/article/view/581">Link</a></li>
+<li>[R9] Venkataraman R, Rashid M, Shrestha H. Inappropriate medication use and cost comparison of PPIs, Indian tertiary facility. 2020;15(2). <a href="https://benthamscience.com/article/105146">Link</a></li>
+<li>[R10] Drug utilisation study of PPIs in inpatients of a tertiary care hospital (Davangere). 2015. IMSEAR sea-166738. <a href="https://search.bvsalud.org/gim/resource/en/sea-166738">Link</a></li>
+<li>[R11] Indian consensus on GERD (modified Delphi). <i>Indian J Gastroenterol</i> 2019. DOI 10.1007/s12664-019-00979-y. <a href="https://www.doi.org/10.1007/s12664-019-00979-y">Link</a></li>
+<li>[R12] Wang WH et al. H2RAs vs PPIs in erosive esophagitis: meta-analysis. <i>World J Gastroenterol</i> 2005;11(26):4067–77. <a href="https://pmc.ncbi.nlm.nih.gov/articles/4502104">PMC4502104</a></li></ol></section>
+</main>
+<footer>Research summary, not medical advice. Verify against primary sources before any clinical or policy use.</footer>
+<script>
+const D={
+adr:[{e:"Headache",p:12.2,c:12.8,pl:8.5},{e:"Diarrhoea",p:8.8,c:9.6,pl:4.9}],
+rw:{
+ share:{t:"Pantoprazole share of PPI prescriptions (%)",n:"Share of prescribed PPIs that were pantoprazole. Denominators differ (patients vs. prescriptions).",r:[["Rural tertiary hospital, n=253 [R9]",76],["Davangere, n=216 [R10]",68],["Fortis Mohali, n=192 [R8]",58]]},
+ inapp:{t:"Inappropriate or unindicated PPI use (%)",n:"R8: derived as 100 minus 54% appropriate (NICE). R9: outside FDA indications. R10: no clear indication (National Formulary). Definitions differ.",r:[["Fortis Mohali [R8]",46,"w"],["Rural tertiary [R9]",57,"w"],["Davangere [R10]",56,"w"]]}},
+pie:[["Pantoprazole",68,"#0f9aa0"],["Rabeprazole",16,"#0b2a55"],["Esomeprazole",13,"#5b4bb7"],["Lansoprazole",3,"#b4531a"]],
+or:[["4 weeks vs omeprazole",1.46],["8 weeks vs omeprazole",1.58],["4 weeks vs lansoprazole 30",1.30],["8 weeks vs lansoprazole 30",1.37]],
+rr:[["Lansoprazole 30 mg",1.02],["Pantoprazole 40 mg",0.98],["Rabeprazole 20 mg",0.93]],
+cmp:[
+["Pantoprazole","40 mg/day","8-week healing ratio vs omeprazole 20 mg: 0.98 [R4]. No significant advantage over omeprazole 20 mg [R5].","Unavailable"],
+["Omeprazole","20 mg/day","Reference comparator in R3–R5.","Unavailable"],
+["Esomeprazole","40 mg/day","OR vs omeprazole 1.46 (1.24–1.71) at 4 wk and 1.58 (1.29–1.92) at 8 wk [R3]; 1.84 (1.50–2.22) at 4 wk in [R5]. Higher healing than standard-dose PPIs.","Unavailable"],
+["Rabeprazole","20 mg/day","8-week ratio vs omeprazole 0.93 (0.87–1.00) [R4]. Insufficient data in [R5].","Unavailable"],
+["Lansoprazole","30 mg/day","8-week ratio vs omeprazole 1.02 (0.98–1.06) [R4]; esomeprazole 40 mg OR 1.30 (1.10–1.53) at 4 wk vs lansoprazole [R3].","Unavailable"]]};
+const $=s=>document.querySelector(s);
+function bars(el,rows,max,cls,unit){el.innerHTML=rows.map(r=>`<div class="bar"><span>${r[0]}</span><div class="trk"><i class="${r[2]||cls||''}" data-w="${r[1]/max*100}"></i></div><b>${r[1]}${unit}</b></div>`).join("");requestAnimationFrame(()=>setTimeout(()=>el.querySelectorAll("i").forEach(i=>i.style.width=i.dataset.w+"%"),30))}
+// ADR grouped bars
+$("#adrbars").innerHTML=D.adr.map(a=>`<b>${a.e}</b>`+[["Pantoprazole",a.p,""],["Comparators",a.c,"n"],["Placebo",a.pl,"w"]].map(r=>`<div class="bar"><span>${r[0]}</span><div class="trk"><i class="${r[2]}" data-w="${r[1]/14*100}"></i></div><b>${r[1]}%</b></div>`).join("")).join("");
+setTimeout(()=>document.querySelectorAll("#adrbars i").forEach(i=>i.style.width=i.dataset.w+"%"),60);
+// RWE filter
+const fb=$("#fbtn");Object.entries(D.rw).forEach(([k,v],i)=>{const b=document.createElement("button");b.textContent=v.t;b.onclick=()=>{fb.querySelectorAll("button").forEach(x=>x.classList.remove("on"));b.classList.add("on");bars($("#rwbars"),v.r,100,"",  "%");$("#rwnote").textContent=v.n};fb.appendChild(b);if(!i)b.click()});
+// Pie
+let acc=0;$("#pie").style.background="conic-gradient("+D.pie.map(p=>{const s=acc;acc+=p[1]/D.pie.reduce((a,b)=>a+b[1],0)*100;return `${p[2]} ${s}% ${acc}%`}).join(",")+")";
+$("#pieleg").innerHTML=D.pie.map(p=>`<span style="--c:${p[2]}">${p[0]} ${p[1]}%</span>`).join("");
+bars($("#orbars"),D.or,2,"n","");bars($("#rrbars"),D.rr,1.1,"","");
+// Table
+function draw(){const q=$("#q").value.toLowerCase();$("#tbl tbody").innerHTML=D.cmp.filter(r=>r.join(" ").toLowerCase().includes(q)).map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td>${r[2]}</td><td class="na">${r[3]}</td></tr>`).join("")}
+$("#q").oninput=draw;draw();
+$("#json").textContent=JSON.stringify(D,null,1);
+</script></body></html>
